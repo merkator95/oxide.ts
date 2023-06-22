@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports._ = exports.Default = exports.Fn = exports.match = exports.Err = exports.Ok = exports.Result = exports.None = exports.Some = exports.Option = void 0;
+var option_1 = require("./option");
+Object.defineProperty(exports, "Option", { enumerable: true, get: function () { return option_1.Option; } });
+Object.defineProperty(exports, "Some", { enumerable: true, get: function () { return option_1.Some; } });
+Object.defineProperty(exports, "None", { enumerable: true, get: function () { return option_1.None; } });
+var result_1 = require("./result");
+Object.defineProperty(exports, "Result", { enumerable: true, get: function () { return result_1.Result; } });
+Object.defineProperty(exports, "Ok", { enumerable: true, get: function () { return result_1.Ok; } });
+Object.defineProperty(exports, "Err", { enumerable: true, get: function () { return result_1.Err; } });
+var match_1 = require("./match");
+Object.defineProperty(exports, "match", { enumerable: true, get: function () { return match_1.match; } });
+Object.defineProperty(exports, "Fn", { enumerable: true, get: function () { return match_1.Fn; } });
+Object.defineProperty(exports, "Default", { enumerable: true, get: function () { return match_1.Default; } });
+Object.defineProperty(exports, "_", { enumerable: true, get: function () { return match_1._; } });
