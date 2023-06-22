@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Err = exports.Ok = exports.Result = exports.None = exports.Some = exports.Option = void 0;
+var option_1 = require("./option");
+Object.defineProperty(exports, "Option", { enumerable: true, get: function () { return option_1.Option; } });
+Object.defineProperty(exports, "Some", { enumerable: true, get: function () { return option_1.Some; } });
+Object.defineProperty(exports, "None", { enumerable: true, get: function () { return option_1.None; } });
+var result_1 = require("./result");
+Object.defineProperty(exports, "Result", { enumerable: true, get: function () { return result_1.Result; } });
+Object.defineProperty(exports, "Ok", { enumerable: true, get: function () { return result_1.Ok; } });
+Object.defineProperty(exports, "Err", { enumerable: true, get: function () { return result_1.Err; } });
