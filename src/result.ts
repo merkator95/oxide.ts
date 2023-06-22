@@ -372,6 +372,10 @@ export class ResultType<T, E> {
       return this[T] ? f(this[Val] as T) : (this as any);
    }
 
+   async andThenAsync<U>(this: Result<T, E>, f: (val: T) => Promise<Result<U, E>>): Promise<Result<U, E>> {
+      return this[T] ? await f(this[Val] as T) : (this as any);
+   }
+
    /**
     * Maps a `Result<T, E>` to `Result<U, E>` by applying a function to the
     * `Ok` value.
