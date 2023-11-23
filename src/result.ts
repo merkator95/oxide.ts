@@ -393,6 +393,13 @@ export class ResultType<T, E> {
       ) as Result<U, E>;
    }
 
+   async mapAsync<U>(this: Result<T, E>, f: (val: T) => Promise<Result<U, E>>): Promise<Result<U, E>> {
+      return new ResultType(
+         this[T] ? await f(this[Val] as T) : (this[Val] as E),
+         this[T]
+      ) as Result<U, E>;
+   }
+
    /**
     * Maps a `Result<T, E>` to `Result<T, F>` by applying a function to the
     * `Err` value.
