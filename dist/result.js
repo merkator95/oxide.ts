@@ -338,6 +338,9 @@ class ResultType {
     map(f) {
         return new ResultType(this[common_1.T] ? f(this[common_1.Val]) : this[common_1.Val], this[common_1.T]);
     }
+    async mapAsync(f) {
+        return new ResultType(this[common_1.T] ? await f(this[common_1.Val]) : this[common_1.Val], this[common_1.T]);
+    }
     /**
      * Maps a `Result<T, E>` to `Result<T, F>` by applying a function to the
      * `Err` value.

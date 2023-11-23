@@ -306,6 +306,7 @@ export declare class ResultType<T, E> {
      * ```
      */
     map<U>(this: Result<T, E>, f: (val: T) => U): Result<U, E>;
+    mapAsync<U>(this: Result<T, E>, f: (val: T) => Promise<Result<U, E>>): Promise<Result<U, E>>;
     /**
      * Maps a `Result<T, E>` to `Result<T, F>` by applying a function to the
      * `Err` value.
