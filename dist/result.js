@@ -225,6 +225,18 @@ class ResultType {
         return this[common_1.T] ? this[common_1.Val] : f();
     }
     /**
+     * Returns the contained `Ok` value or throws the provided error.
+     * The error value must implement the `Error` interface.
+     */
+    unwrapOrThrow() {
+        if (this[common_1.T]) {
+            return this[common_1.Val];
+        }
+        else {
+            throw this[common_1.Val];
+        }
+    }
+    /**
      * Returns the contained `Ok` or `Err` value.
      *
      * Most problems are better solved using one of the other `unwrap_` methods.

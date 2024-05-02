@@ -270,6 +270,18 @@ export class ResultType<T, E> {
    }
 
    /**
+    * Returns the contained `Ok` value or throws the provided error.
+    * The error value must implement the `Error` interface.
+    */
+   unwrapOrThrow(this: Result<T, Error>): T {
+      if (this[T]) {
+         return this[Val] as T;
+      } else {
+         throw this[Val] as Error;
+      }
+   }
+
+   /**
     * Returns the contained `Ok` or `Err` value.
     *
     * Most problems are better solved using one of the other `unwrap_` methods.
@@ -372,7 +384,10 @@ export class ResultType<T, E> {
       return this[T] ? f(this[Val] as T) : (this as any);
    }
 
-   async andThenAsync<U>(this: Result<T, E>, f: (val: T) => Promise<Result<U, E>>): Promise<Result<U, E>> {
+   async andThenAsync<U>(
+      this: Result<T, E>,
+      f: (val: T) => Promise<Result<U, E>>
+   ): Promise<Result<U, E>> {
       return this[T] ? await f(this[Val] as T) : (this as any);
    }
 
@@ -393,7 +408,10 @@ export class ResultType<T, E> {
       ) as Result<U, E>;
    }
 
-   async mapAsync<U>(this: Result<T, E>, f: (val: T) => Promise<Result<U, E>>): Promise<Result<U, E>> {
+   async mapAsync<U>(
+      this: Result<T, E>,
+      f: (val: T) => Promise<Result<U, E>>
+   ): Promise<Result<U, E>> {
       return new ResultType(
          this[T] ? await f(this[Val] as T) : (this[Val] as E),
          this[T]
