@@ -207,6 +207,11 @@ export declare class ResultType<T, E> {
      */
     unwrapOrElse(this: Result<T, E>, f: () => T): T;
     /**
+     * Returns the contained `Ok` value or throws the provided error.
+     * The error value must implement the `Error` interface.
+     */
+    unwrapOrThrow(this: Result<T, Error>): T;
+    /**
      * Returns the contained `Ok` or `Err` value.
      *
      * Most problems are better solved using one of the other `unwrap_` methods.
