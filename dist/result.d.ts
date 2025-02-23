@@ -323,6 +323,7 @@ export declare class ResultType<T, E> {
      * ```
      */
     mapErr<F>(this: Result<T, E>, op: (err: E) => F): Result<T, F>;
+    mapErrAsync<F>(this: Result<T, E>, op: (err: E) => Promise<F>): Promise<Result<T, F>>;
     /**
      * Returns the provided default if `Err`, otherwise calls `f` with the
      * `Ok` value and returns the result.

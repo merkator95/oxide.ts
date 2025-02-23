@@ -366,6 +366,9 @@ class ResultType {
     mapErr(op) {
         return new ResultType(this[common_1.T] ? this[common_1.Val] : op(this[common_1.Val]), this[common_1.T]);
     }
+    async mapErrAsync(op) {
+        return new ResultType(this[common_1.T] ? this[common_1.Val] : await op(this[common_1.Val]), this[common_1.T]);
+    }
     /**
      * Returns the provided default if `Err`, otherwise calls `f` with the
      * `Ok` value and returns the result.
