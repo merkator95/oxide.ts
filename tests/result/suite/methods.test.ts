@@ -126,6 +126,18 @@ export default function methods() {
       ).to.equal("num 2");
    });
 
+   it("andThenAsync", async () => {
+      await AsRes(Ok(1))
+         .andThenAsync(() => Promise.resolve(Err(1)))
+         .then((res) => expect(res.isErr()).to.be.true);
+      await Err(1)
+         .andThenAsync(() => Promise.resolve(Ok(2)))
+         .then((res) => expect(res.isErr()).to.be.true);
+      await Ok(1)
+         .andThenAsync((n) => Promise.resolve(Ok(`num ${n + 1}`)))
+         .then((res) => expect(res.unwrap()).to.equal("num 2"));
+   });
+
    it("map", () => {
       expect(
          Ok(1)
@@ -150,6 +162,19 @@ export default function methods() {
             .mapErr((val) => val + 1)
             .unwrapErr()
       ).to.throw(/unwrap/);
+   });
+
+   it("mapErrAsync", async () => {
+      await Err(1)
+         .mapErrAsync((val) => Promise.resolve(val + 1))
+         .then((res) => {
+            expect(res.unwrapErr()).to.equal(2);
+         });
+      await Ok(1)
+         .mapErrAsync((val) => Promise.resolve(val + 1))
+         .then((res) => {
+            expect(() => res.unwrapErr()).to.throw(/unwrap/);
+         });
    });
 
    it("mapOr", () => {

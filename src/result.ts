@@ -372,7 +372,10 @@ export class ResultType<T, E> {
       return this[T] ? f(this[Val] as T) : (this as any);
    }
 
-   async andThenAsync<U>(this: Result<T, E>, f: (val: T) => Promise<Result<U, E>>): Promise<Result<U, E>> {
+   async andThenAsync<U>(
+      this: Result<T, E>,
+      f: (val: T) => Promise<Result<U, E>>
+   ): Promise<Result<U, E>> {
       return this[T] ? await f(this[Val] as T) : (this as any);
    }
 
@@ -406,6 +409,16 @@ export class ResultType<T, E> {
    mapErr<F>(this: Result<T, E>, op: (err: E) => F): Result<T, F> {
       return new ResultType(
          this[T] ? (this[Val] as T) : op(this[Val] as E),
+         this[T]
+      ) as Result<T, F>;
+   }
+
+   async mapErrAsync<F>(
+      this: Result<T, E>,
+      op: (err: E) => Promise<F>
+   ): Promise<Result<T, F>> {
+      return new ResultType(
+         this[T] ? (this[Val] as T) : await op(this[Val] as E),
          this[T]
       ) as Result<T, F>;
    }
